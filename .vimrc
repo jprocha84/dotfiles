@@ -228,3 +228,4 @@ noremap <leader>x :cnext<CR>
 
 set splitbelow
 set splitright
+" Adding extra components
