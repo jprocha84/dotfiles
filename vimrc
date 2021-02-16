@@ -37,6 +37,8 @@ inoremap <C-n> :nohl<CR>
 noremap <Leader>e :quit<CR>  " Quit current window
 noremap <Leader>E :qa!<CR>   " Quit all windows
 
+noremap <Leader>w :w<CR>   " Write the changes in buffer
+
 
 " bind Ctrl+<movement> keys to move around the windows, instead of using Ctrl+w + <movement>
 " Every unnecessary keystroke that can be saved is good for your health :)
@@ -44,16 +46,6 @@ map <c-j> <c-w>j
 map <c-k> <c-w>k
 map <c-l> <c-w>l
 map <c-h> <c-w>h
-
-
-" easier moving between tabs
-" map <Leader>n <esc>:tabprevious<CR>
-" map <Leader>m <esc>:tabnext<CR>
-
-
-" map sort function to a key
-" vnoremap <Leader>s :sort<CR>
-
 
 " easier moving of code blocks
 " Try to go into visual mode (v), thenselect several lines of code here and
@@ -147,10 +139,11 @@ let g:pydocstring_formatter = 'numpy'
 
 call plug#begin('~/.vim/plugged')
 Plug 'mhinz/vim-startify'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
 Plug 'terryma/vim-multiple-cursors'
+
 Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+
 function! BuildYCM(info)
   " info is a dictionary with 3 fields
   " - name:   name of the plugin
@@ -161,6 +154,7 @@ function! BuildYCM(info)
   endif
 endfunction
 Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
+
 Plug 'airblade/vim-gitgutter'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'tpope/vim-eunuch'
@@ -180,6 +174,11 @@ Plug 'gmccreight/vim-easygrep'
 Plug 'dyng/ctrlsf.vim'
 Plug 'hashivim/vim-terraform'
 Plug 'FredKSchott/CoVim'
+Plug 'scrooloose/syntastic'
+Plug 'ryanoasis/vim-devicons'
+Plug 'morhetz/gruvbox'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'vim-scripts/taglist.vim'
 call plug#end()
 
 """"""""""""
@@ -187,13 +186,8 @@ call plug#end()
 """"""""""""
 let NERDTreeShowHidden=1
 
-function! ToggleNERDTree()
-    NERDTreeToggle
-    " Set NERDTree instances to be mirrored
-    silent NERDTreeMirror
-endfunction
-
-nmap <leader>n :call ToggleNERDTree()<CR>
+nmap <leader>n :NERDTreeToggle<CR>
+nmap <leader>f :NERDTreeFind<CR>
 
 """"""""""""
 " CtrlSF
@@ -221,6 +215,8 @@ noremap <leader>h :tab term ++close htop<CR>
 " https://github.com/jesseduffiedl/lazygit
 noremap <leader>g :tab term ++close lazygit<CR>
 
+noremap <leader>t :tab term ++close<CR>
+
 " Easily GREP current word in current file.
 command GREPCF :execute 'vimgrep '.expand('<cword>').' '.expand('%') | :copen | :cc
 noremap <leader>z :cprevious<CR>
@@ -228,4 +224,12 @@ noremap <leader>x :cnext<CR>
 
 set splitbelow
 set splitright
-" Adding extra components
+
+cnoremap <C-p> <Up>
+cnoremap <C-n> <Down>
+
+noremap <leader>y :CtrlP<CR>
+noremap <leader>Y :CtrlPBuffer<CR>
+
+
+
