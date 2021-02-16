@@ -1,2 +1,2 @@
-# my_vim
+# dotfiles
 My vim configuration with custom scripts
