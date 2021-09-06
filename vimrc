@@ -35,7 +35,7 @@ inoremap <C-n> :nohl<CR>
 
 " Quick quit command
 noremap <Leader>e :quit<CR>  " Quit current window
-noremap <Leader>E :qa!<CR>   " Quit all windows
+noremap <Leader>E :quit!<CR>   " Quit all windows
 
 noremap <Leader>w :w<CR>   " Write the changes in buffer
 
@@ -179,6 +179,7 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'morhetz/gruvbox'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'vim-scripts/taglist.vim'
+Plug 'sansyrox/vim-python-virtualenv'
 call plug#end()
 
 """"""""""""
@@ -187,7 +188,7 @@ call plug#end()
 let NERDTreeShowHidden=1
 
 nmap <leader>n :NERDTreeToggle<CR>
-nmap <leader>f :NERDTreeFind<CR>
+nmap <leader>N :NERDTreeFind<CR>
 
 """"""""""""
 " CtrlSF
@@ -207,7 +208,7 @@ nmap <leader>c :CtrlSFFocus<CR>
 nmap <leader>C :CtrlSFToggle<CR>
 
 " Use Ripgrep with CtrlSF for performance
-let g:ctrlsf_ackprg = '/snap/bin/rg'
+" let g:ctrlsf_ackprg = '/snap/bin/rg'
 
 " https://hisham.hm/htop/
 noremap <leader>h :tab term ++close htop<CR>
@@ -228,8 +229,12 @@ set splitright
 cnoremap <C-p> <Up>
 cnoremap <C-n> <Down>
 
-noremap <leader>y :CtrlP<CR>
-noremap <leader>Y :CtrlPBuffer<CR>
+noremap <leader>f :CtrlP<CR>
+noremap <leader>F :CtrlPBuffer<CR>
 
+noremap <leader>y "*y<CR>
+noremap <leader>p "*p<CR>
 
+let g:syntastic_python_flake8_args = "--max-line-length=120"
+let g:syntastic_python_checkers = ['pylint']
 
